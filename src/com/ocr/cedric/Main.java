@@ -17,6 +17,7 @@ public class Main {
 
     /**
      * This function lunches the script for asking the player character
+     * @return The created player through the user choices
      */
     public static Jobs createPlayer() {
         Scanner in = new Scanner(System.in);
@@ -97,36 +98,10 @@ public class Main {
             nbTurns++;
 
             if(nbTurns % 2 == 1) {
-                System.out.println("\nJoueur 1 : A votre tour ! Il vous reste " + player1.lifePoints + "PV. 1=AttaqueBasique 2=AttaqueSpéciale");
-                playerAction = in.nextInt();
-                while(playerAction < 1 || playerAction >2) {
-                    System.out.println("Joueur 1 : Ce n'est pas une action valide. 1=AttaqueBasique 2=AttaqueSpéciale");
-                    playerAction = in.nextInt();
-                }
-                if(playerAction == 1) {
-                    dommages = player1.basicAttack();
-                    player2.setLifePoints(player2.lifePoints - dommages);
-
-                } else if(playerAction == 2) {
-                    dommages = player1.specialAttack();
-                    player2.setLifePoints(player2.lifePoints - dommages);
-                }
+                playerOneTurn(player1, player2);
 
             } else if(nbTurns % 2 == 0) {
-                System.out.println("\nJoueur 2 : A votre tour ! Il vous reste " + player2.lifePoints + "PV. 1=AttaqueBasique 2=AttaqueSpéciale");
-                playerAction = in.nextInt();
-                while(playerAction < 1 || playerAction >2) {
-                    System.out.println("Joueur 1 : Ce n'est pas une action valide. 1=AttaqueBasique 2=AttaqueSpéciale");
-                    playerAction = in.nextInt();
-                }
-                if(playerAction == 1) {
-                    dommages = player2.basicAttack();
-                    player1.setLifePoints(player1.lifePoints - dommages);
-
-                } else if(playerAction == 2) {
-                    dommages = player2.specialAttack();
-                    player1.setLifePoints(player1.lifePoints - dommages);
-                }
+                playerTwoTurn(player1, player2);
             }
 
         }
@@ -140,5 +115,57 @@ public class Main {
             System.out.println("Félicitation joueur 1 !!!");
         }
         System.out.println("\nAu revoir ! Relancez le jeu pour une nouvelle partie");
+    }
+
+    /**
+     *
+     * @param player1
+     * @param player2
+     */
+    public static void playerOneTurn(Jobs player1, Jobs player2) {
+        Scanner in = new Scanner(System.in);
+        int playerAction = 0;
+        int dommages = 0;
+
+        System.out.println("\nJoueur 1 : A votre tour ! Il vous reste " + player1.lifePoints + "PV. 1=AttaqueBasique 2=AttaqueSpéciale");
+        playerAction = in.nextInt();
+        while(playerAction < 1 || playerAction >2) {
+            System.out.println("Joueur 1 : Ce n'est pas une action valide. 1=AttaqueBasique 2=AttaqueSpéciale");
+            playerAction = in.nextInt();
+        }
+        if(playerAction == 1) {
+            dommages = player1.basicAttack();
+            player2.setLifePoints(player2.lifePoints - dommages);
+
+        } else if(playerAction == 2) {
+            dommages = player1.specialAttack();
+            player2.setLifePoints(player2.lifePoints - dommages);
+        }
+    }
+
+    /**
+     *
+     * @param player1
+     * @param player2
+     */
+    public static void playerTwoTurn(Jobs player1, Jobs player2) {
+        Scanner in = new Scanner(System.in);
+        int playerAction = 0;
+        int dommages = 0;
+
+        System.out.println("\nJoueur 2 : A votre tour ! Il vous reste " + player2.lifePoints + "PV. 1=AttaqueBasique 2=AttaqueSpéciale");
+        playerAction = in.nextInt();
+        while(playerAction < 1 || playerAction >2) {
+            System.out.println("Joueur 2 : Ce n'est pas une action valide. 1=AttaqueBasique 2=AttaqueSpéciale");
+            playerAction = in.nextInt();
+        }
+        if(playerAction == 1) {
+            dommages = player2.basicAttack();
+            player1.setLifePoints(player1.lifePoints - dommages);
+
+        } else if(playerAction == 2) {
+            dommages = player2.specialAttack();
+            player1.setLifePoints(player1.lifePoints - dommages);
+        }
     }
 }

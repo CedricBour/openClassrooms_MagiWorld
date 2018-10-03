@@ -26,7 +26,7 @@ public class wizardJob extends Jobs {
      * @return
      */
     public int specialAttack() {
-        System.out.println("Vous utilisez SOIN et vous soignez de " + (this.intellect)*2);
+        System.out.println("Vous utilisez SOIN et vous vous soignez de " + (this.intellect)*2);
         this.setLifePoints(this.lifePoints + (this.intellect)*2);
         return 0;
     }

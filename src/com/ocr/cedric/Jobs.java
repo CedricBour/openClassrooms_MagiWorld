@@ -23,7 +23,15 @@ public abstract class Jobs {
         this.dexterity = newDexterity;
     }
 
+    /**
+     *
+     * @return
+     */
     abstract int basicAttack();
 
+    /**
+     *
+     * @return
+     */
     abstract int specialAttack();
 }
