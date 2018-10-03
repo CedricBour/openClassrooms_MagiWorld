@@ -12,19 +12,11 @@ public class warriorJob extends Jobs {
         System.out.println("Félicitation, votre Guerrier est prêt à combattre !");
     }
 
-    /**
-     *
-     * @return
-     */
     public int basicAttack() {
         System.out.println("Vous utilisez COUP D'EPEE et infligez " + this.strength);
         return this.strength;
     }
 
-    /**
-     *
-     * @return
-     */
     public int specialAttack() {
         System.out.println("Vous utilisez COUP DE RAGE et infligez " + this.strength*2);
         this.setLifePoints(this.lifePoints - this.strength);

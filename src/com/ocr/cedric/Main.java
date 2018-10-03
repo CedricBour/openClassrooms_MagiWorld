@@ -24,7 +24,6 @@ public class Main {
 
         System.out.println("Choisissez votre classe : 1=Guerrier, 2=Rôdeur, 3=Mage");
         int playerJobNumber = in.nextInt();
-        //System.out.println("VAR playerJobNumber = " + playerJobNumber);
 
         //Test if the user hasn't choose a valid class
         while(playerJobNumber <1 || playerJobNumber >3 ){
@@ -58,34 +57,28 @@ public class Main {
             playerIntellect = in.nextInt();
         }
 
-        Jobs newPlayer = null;
-        //System.out.println("VAR newPlayer = " + newPlayer);
+        Jobs newPlayer = null;  //Protection if something goes wrong
         switch(playerJobNumber) {
             case 1: newPlayer = new warriorJob(playerLevel, playerStrength,
                     playerDexterity, playerIntellect);
-                    //System.out.println("VAR newPlayer1 = " + newPlayer);
                     break;
             case 2: newPlayer = new prowlerJob(playerLevel, playerStrength,
                     playerDexterity, playerIntellect);
-                    //System.out.println("VAR newPlayer2 = " + newPlayer);
                     break;
             case 3: newPlayer = new wizardJob(playerLevel, playerStrength,
                     playerDexterity, playerIntellect);
-                    //System.out.println("VAR newPlayer3 = " + newPlayer);
                     break;
             default: new warriorJob(playerLevel, playerStrength,
                     playerDexterity, playerIntellect);
                     break;
         }
-
-        //System.out.println("VAR newPlayer = " + newPlayer);
         return (newPlayer != null)? newPlayer : createPlayer();
     }
 
     /**
-     *
-     * @param player1
-     * @param player2
+     * This function plays the battle, by asking to each player his action, until the death of one of them
+     * @param player1 the first created player
+     * @param player2 the second created player
      */
     public static void battleToDeath(Jobs player1, Jobs player2) {
         Scanner in = new Scanner(System.in);
@@ -103,7 +96,6 @@ public class Main {
             } else if(nbTurns % 2 == 0) {
                 playerTwoTurn(player1, player2);
             }
-
         }
 
         if(player1.lifePoints<=0 && player2.lifePoints>0){
@@ -118,9 +110,9 @@ public class Main {
     }
 
     /**
-     *
-     * @param player1
-     * @param player2
+     * This function asks for the player one his action
+     * @param player1 the first created player
+     * @param player2 the second created player
      */
     public static void playerOneTurn(Jobs player1, Jobs player2) {
         Scanner in = new Scanner(System.in);
@@ -144,9 +136,9 @@ public class Main {
     }
 
     /**
-     *
-     * @param player1
-     * @param player2
+     * This function asks for the player two his action
+     * @param player1 the first created player
+     * @param player2 the second created player
      */
     public static void playerTwoTurn(Jobs player1, Jobs player2) {
         Scanner in = new Scanner(System.in);

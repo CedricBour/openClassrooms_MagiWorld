@@ -12,19 +12,11 @@ public class wizardJob extends Jobs {
         System.out.println("Félicitation, votre Magicien est prêt à combattre !");
     }
 
-    /**
-     *
-     * @return
-     */
     public int basicAttack() {
         System.out.println("Vous utilisez BOULE DE FEU et infligez " + this.intellect);
         return this.intellect;
     }
 
-    /**
-     *
-     * @return
-     */
     public int specialAttack() {
         System.out.println("Vous utilisez SOIN et vous vous soignez de " + (this.intellect)*2);
         this.setLifePoints(this.lifePoints + (this.intellect)*2);

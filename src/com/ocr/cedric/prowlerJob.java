@@ -12,19 +12,11 @@ public class prowlerJob extends Jobs {
         System.out.println("Félicitation, votre Rôdeur est prêt à combattre !");
     }
 
-    /**
-     *
-     * @return
-     */
     public int basicAttack() {
         System.out.println("Vous utilisez TIR A L'ARC et infligez " + this.dexterity);
         return this.dexterity;
     }
 
-    /**
-     *
-     * @return
-     */
     public int specialAttack() {
         System.out.println("Vous utilisez CONCENTRATION et gagnez " + (this.dexterity)/2 + " en dextérité");
         this.setNewDexterity(this.dexterity + (this.dexterity)/2);
