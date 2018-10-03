@@ -27,11 +27,17 @@ public class Main {
 
         //Test if the user hasn't choose a valid class
         while(playerJobNumber <1 || playerJobNumber >3 ){
-            System.out.println("Ce n'est pas un nombre valide ! Veuillez recommencer");
+            System.out.println("Ce n'est pas un nombre valide ! Veuillez recommencer : 1=Guerrier, 2=Rôdeur, 3=Mage");
             playerJobNumber = in.nextInt();
         }
+
         System.out.println("Niveau de votre personnage ?");
         int playerLevel = in.nextInt();
+        //Test if the user hasn't choose a valid level
+        while(playerLevel <1 || playerLevel >100 ){
+            System.out.println("Ce n'est pas un nombre valide ! Veuillez choisir un niveau entre 1 et 100");
+            playerLevel = in.nextInt();
+        }
 
         System.out.println(">>> RAPPEL : la somme de votre FORCE, DEXTERITE et INTELLIGENCE ne peut pas dépasser votre NIVEAU !");
         System.out.println("Force de votre personnage ?");
@@ -58,7 +64,7 @@ public class Main {
                     playerDexterity, playerIntellect);
                     //System.out.println("VAR newPlayer1 = " + newPlayer);
                     break;
-            case 2: newPlayer = new warriorJob(playerLevel, playerStrength,
+            case 2: newPlayer = new prowlerJob(playerLevel, playerStrength,
                     playerDexterity, playerIntellect);
                     //System.out.println("VAR newPlayer2 = " + newPlayer);
                     break;
@@ -86,11 +92,12 @@ public class Main {
         int playerAction = 0;
         int dommages = 0;
 
+        System.out.println("\nLa bataille commence !!!");
         while(player1.lifePoints > 0 && player2.lifePoints > 0) {
             nbTurns++;
 
             if(nbTurns % 2 == 1) {
-                System.out.println("Joueur 1 : A votre tour ! Il vous reste " + player1.lifePoints + "PV. 1=AttaqueBasique 2=AttaqueSpéciale");
+                System.out.println("\nJoueur 1 : A votre tour ! Il vous reste " + player1.lifePoints + "PV. 1=AttaqueBasique 2=AttaqueSpéciale");
                 playerAction = in.nextInt();
                 while(playerAction < 1 || playerAction >2) {
                     System.out.println("Joueur 1 : Ce n'est pas une action valide. 1=AttaqueBasique 2=AttaqueSpéciale");
@@ -106,7 +113,7 @@ public class Main {
                 }
 
             } else if(nbTurns % 2 == 0) {
-                System.out.println("Joueur 2 : A votre tour ! Il vous reste " + player2.lifePoints + "PV. 1=AttaqueBasique 2=AttaqueSpéciale");
+                System.out.println("\nJoueur 2 : A votre tour ! Il vous reste " + player2.lifePoints + "PV. 1=AttaqueBasique 2=AttaqueSpéciale");
                 playerAction = in.nextInt();
                 while(playerAction < 1 || playerAction >2) {
                     System.out.println("Joueur 1 : Ce n'est pas une action valide. 1=AttaqueBasique 2=AttaqueSpéciale");
@@ -114,16 +121,24 @@ public class Main {
                 }
                 if(playerAction == 1) {
                     dommages = player2.basicAttack();
-                    player1.setLifePoints(player2.lifePoints - dommages);
+                    player1.setLifePoints(player1.lifePoints - dommages);
 
                 } else if(playerAction == 2) {
                     dommages = player2.specialAttack();
-                    player1.setLifePoints(player2.lifePoints - dommages);
+                    player1.setLifePoints(player1.lifePoints - dommages);
                 }
             }
 
         }
-        System.out.println("La partie est finie !");
 
+        if(player1.lifePoints<=0 && player2.lifePoints>0){
+            System.out.println("\nLe joueur 1 est mort !");
+            System.out.println("Félicitation joueur 2 !!!");
+        }
+        else if(player2.lifePoints<=0 && player1.lifePoints>0){
+            System.out.println("\nLe joueur 2 est mort !");
+            System.out.println("Félicitation joueur 1 !!!");
+        }
+        System.out.println("\nAu revoir ! Relancez le jeu pour une nouvelle partie");
     }
 }
