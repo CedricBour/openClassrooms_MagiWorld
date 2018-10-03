@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="openClassrooms_MagiWorld:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/openClassrooms_MagiWorld_jar</output-path>
+    <root id="archive" name="openClassrooms_MagiWorld.jar">
+      <element id="module-output" name="openClassrooms_MagiWorld" />
+    </root>
+  </artifact>
+</component>
